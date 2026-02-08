@@ -1,0 +1,100 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: white;
+}
+
+.center {
+  width: 300px;
+  margin: 100px auto;
+  background: #111;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f40612;
+}
+
+a {
+  color: #e50914;
+  text-decoration: none;
+}
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-card {
+  background: #1c1c1c;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.movie-card h3 {
+  font-size: 14px;
+  margin: 10px 0 5px;
+}
+
+.movie-card p {
+  font-size: 12px;
+  margin: 3px 0;
+  color: #ccc;
+}
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px;
+}
+
+.filters input,
+.filters select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.movie-card {
+  cursor: pointer;
+}
+input[type="date"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
