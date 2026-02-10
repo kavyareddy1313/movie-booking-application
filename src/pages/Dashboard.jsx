@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { getPopularMovies } from "../services/movieApi";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +7,17 @@ export default function Dashboard() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchMovies();
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
   }, []);
 
   const fetchMovies = async () => {
@@ -34,27 +40,31 @@ export default function Dashboard() {
     });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-  <div className="left">
-    <div className="logo">🎥</div>
-    <h1>BookMyReel</h1>
-  </div>
+        <div className="left">
+          <div className="logo">🎥</div>
+          <h1>BookMyReel</h1>
+        </div>
 
-  <div className="right">
-    <div className="user-box">
-      <span className="avatar">👤</span>
-      <span className="user">Kavya</span>
-    </div>
+        <div className="right">
+          <div className="user-box">
+            <span className="avatar">👤</span>
+            <span className="user">{user?.name}</span>
+          </div>
 
-    <button className="logout" onClick={() => navigate("/")}>
-      Logout
-    </button>
-  </div>
-</div>
+          <button className="logout" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      </div>
 
-      {/* FILTER BAR */}
       <div className="filters">
         <input
           type="text"
@@ -73,7 +83,6 @@ export default function Dashboard() {
         </select>
       </div>
 
-      {/* MOVIE GRID */}
       <div className="movie-grid">
         {filteredMovies.map((movie, index) => (
           <div
