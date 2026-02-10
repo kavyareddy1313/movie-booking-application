@@ -30,7 +30,6 @@ export default function Login() {
     } else if (user.password !== password) {
       alert("Wrong password!");
     } else {
-      // ✅ ADD THIS (feature)
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -42,6 +41,11 @@ export default function Login() {
       alert(`Welcome back, ${user.name}!`);
       navigate("/dashboard");
     }
+  };
+
+  // ✅ Add this function
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -57,18 +61,14 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <div className="password-field">
+        <div className="input-wrapper">
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
-          <span
-            className="eye-icon"
-            onClick={() => setShowPassword(!showPassword)}
-          >
+          <span className="eye-icon" onClick={togglePassword}>
             {showPassword ? <FiEyeOff /> : <FiEye />}
           </span>
         </div>
@@ -77,9 +77,7 @@ export default function Login() {
 
         <p className="switch-text">
           New here?{" "}
-          <span onClick={() => navigate("/register")}>
-            Create an account
-          </span>
+          <span onClick={() => navigate("/register")}>Create an account</span>
         </p>
       </div>
     </div>
